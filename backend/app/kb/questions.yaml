@@ -1,0 +1,175 @@
+- id: Q01
+  area: accounts
+  text: Does every employee use a unique password for each work account?
+  weight: 4
+  recommendation_id: KB-ACC-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q02
+  area: accounts
+  text: Do you use a password manager?
+  weight: 3
+  recommendation_id: KB-ACC-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q03
+  area: accounts
+  text: Does each person have their own login (no shared accounts)?
+  weight: 3
+  recommendation_id: KB-ACC-003
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q04
+  area: accounts
+  text: Are accounts of former staff disabled promptly?
+  weight: 4
+  recommendation_id: KB-ACC-003
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q05
+  area: mfa
+  text: Is multi-factor authentication on for business email?
+  weight: 5
+  recommendation_id: KB-ACC-002
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q06
+  area: mfa
+  text: Is MFA on for banking and accounting software?
+  weight: 5
+  recommendation_id: KB-ACC-002
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q07
+  area: mfa
+  text: Is MFA on for cloud storage and admin accounts?
+  weight: 4
+  recommendation_id: KB-ACC-002
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q08
+  area: email
+  text: Do staff verify unexpected payment or login requests by a second channel?
+  weight: 5
+  recommendation_id: KB-EML-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q09
+  area: email
+  text: Do staff know not to open unexpected attachments?
+  weight: 3
+  recommendation_id: KB-EML-003
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q10
+  area: email
+  text: Is SPF/DKIM/DMARC set up for your domain?
+  weight: 3
+  recommendation_id: KB-EML-004
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q11
+  area: devices
+  text: Do all work devices have screen locks?
+  weight: 2
+  recommendation_id: KB-DEV-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q12
+  area: devices
+  text: Is disk encryption enabled on laptops and phones?
+  weight: 3
+  recommendation_id: KB-DEV-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q13
+  area: devices
+  text: Can lost devices be located or wiped remotely?
+  weight: 2
+  recommendation_id: KB-DEV-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q14
+  area: updates
+  text: Are operating systems set to update automatically?
+  weight: 4
+  recommendation_id: KB-UPD-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q15
+  area: updates
+  text: Are browsers and key apps kept up to date?
+  weight: 3
+  recommendation_id: KB-UPD-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q16
+  area: updates
+  text: Are unsupported or very old devices retired?
+  weight: 3
+  recommendation_id: KB-UPD-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q17
+  area: backups
+  text: Are important files backed up regularly?
+  weight: 5
+  recommendation_id: KB-BKP-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q18
+  area: backups
+  text: Is at least one backup copy offline or offsite?
+  weight: 5
+  recommendation_id: KB-BKP-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q19
+  area: backups
+  text: Have you tested restoring from backup in the last 6 months?
+  weight: 4
+  recommendation_id: KB-BKP-002
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q20
+  area: network
+  text: Was the default router admin password changed?
+  weight: 3
+  recommendation_id: KB-NET-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q21
+  area: network
+  text: Is office Wi-Fi using WPA2 or WPA3 with a strong passphrase?
+  weight: 3
+  recommendation_id: KB-NET-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q22
+  area: network
+  text: Is there a separate guest Wi-Fi?
+  weight: 2
+  recommendation_id: KB-NET-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q23
+  area: people
+  text: Do staff know who to tell if something looks suspicious?
+  weight: 4
+  recommendation_id: KB-PPL-001
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q24
+  area: people
+  text: Has staff had security awareness training in the past year?
+  weight: 3
+  recommendation_id: KB-PPL-002
+  why_it_matters: TODO human to write
+  status: draft
+- id: Q25
+  area: people
+  text: Do two people approve new payees or bank detail changes?
+  weight: 4
+  recommendation_id: KB-PAY-001
+  why_it_matters: TODO human to write
+  status: draft

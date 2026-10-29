@@ -1,0 +1,31 @@
+# ALL entries are DRAFT. Human must verify against real public guidance, then set status: approved and fill source_url.
+- {id: KB-ACC-001, title: Use a password manager and unique passwords, area: accounts, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Choose a reputable password manager, Move business logins into it, Replace reused passwords starting with email and banking]}
+- {id: KB-ACC-002, title: Turn on multi-factor authentication, area: mfa, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Enable MFA on email first, Then banking, accounting and cloud storage, Prefer authenticator app or security key over SMS where offered]}
+- {id: KB-ACC-003, title: Remove shared and stale accounts, area: accounts, effort: med, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [List all accounts and who uses them, Give each person their own login, Disable accounts of former staff immediately]}
+- {id: KB-EML-001, title: Verify unexpected requests through a second channel, area: email, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Do not click links or open attachments, Contact the sender using a phone number or address you already know, Report to your manager or IT helper]}
+- {id: KB-EML-002, title: Check links before clicking, area: email, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Hover to see the real address, Type known sites manually, Be wary of shortened links]}
+- {id: KB-EML-003, title: Treat unexpected attachments as risky, area: email, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Do not enable macros, Confirm with the sender first, Block risky file types in email settings if available]}
+- {id: KB-EML-004, title: Set up SPF, DKIM and DMARC for your domain, area: email, effort: med, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Ask your email provider for the records, Publish them in DNS, Start DMARC in monitor mode]}
+- {id: KB-PAY-001, title: Verify payment detail changes by phone, area: process, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Never change bank details from an email alone, Call the vendor on a known number, Require two people to approve new payees]}
+- {id: KB-UPD-001, title: Turn on automatic updates, area: updates, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Enable OS auto-update, Enable browser and app auto-update, Retire unsupported devices]}
+- {id: KB-BKP-001, title: Follow the 3-2-1 backup approach, area: backups, effort: med, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Keep 3 copies of important data, On 2 different media, With 1 copy offsite or offline]}
+- {id: KB-BKP-002, title: Test restoring from backup, area: backups, effort: med, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Pick a file set, Restore it to a test location, Record the date and result]}
+- {id: KB-DEV-001, title: Lock and encrypt devices, area: devices, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Set screen locks, Turn on built-in disk encryption, Enable find-my-device or remote wipe]}
+- {id: KB-NET-001, title: Secure the office Wi-Fi, area: network, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Change default router admin password, Use WPA2 or WPA3, Use a separate guest network]}
+- {id: KB-PPL-001, title: Make reporting easy and blame-free, area: people, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Name who staff should tell, Share it in writing, Thank people who report]}
+- {id: KB-PPL-002, title: Run short regular security training, area: people, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+   steps: [Do a 10-minute session each quarter, Use real examples, Re-train after incidents]}

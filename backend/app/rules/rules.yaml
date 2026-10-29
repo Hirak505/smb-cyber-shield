@@ -1,0 +1,14 @@
+bands: {likely_safe: [0, 24], suspicious: [25, 59], likely_phishing: [60, 100]}
+rules:
+  - {id: R01, weight: 15, description: Urgency or threat language, kb: [KB-EML-001]}
+  - {id: R02, weight: 30, description: Asks for credentials, OTP or card details, kb: [KB-EML-001, KB-ACC-002]}
+  - {id: R03, weight: 25, description: Link text domain differs from actual link domain, kb: [KB-EML-002]}
+  - {id: R04, weight: 25, description: Lookalike, homoglyph or punycode domain, kb: [KB-EML-002]}
+  - {id: R05, weight: 15, description: URL shortener or IP-literal host, kb: [KB-EML-002]}
+  - {id: R06, weight: 20, description: Display name vs sender domain mismatch, kb: [KB-EML-001]}
+  - {id: R07, weight: 15, description: Free-mail sender posing as company or executive, kb: [KB-PAY-001]}
+  - {id: R08, weight: 30, description: Payment detail change request, kb: [KB-PAY-001]}
+  - {id: R09, weight: 25, description: Risky attachment type, kb: [KB-EML-003]}
+  - {id: R10, weight: 30, description: Gift-card, wire or crypto request, kb: [KB-PAY-001]}
+  - {id: R11, weight: 5, description: Generic greeting and odd tone, kb: [KB-EML-001]}
+  - {id: R12, weight: 15, description: Invoice not matching known vendor list, kb: [KB-PAY-001]}

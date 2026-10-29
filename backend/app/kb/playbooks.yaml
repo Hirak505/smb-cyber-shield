@@ -1,0 +1,30 @@
+# DRAFT playbooks. Human must review against public incident-response guidance before approval.
+- id: PB-PHISH-CLICK
+  title: I clicked a suspicious link or entered my password
+  status: draft
+  steps:
+    - {id: S1, action: Disconnect the device from Wi-Fi/network if you downloaded or ran anything, time_target: 5 min, who: Employee, kb_ref: KB-EML-001}
+    - {id: S2, action: Change the password of the affected account from a clean device, time_target: 15 min, who: Employee, kb_ref: KB-ACC-001}
+    - {id: S3, action: Turn on or reset MFA for the account and sign out all sessions, time_target: 15 min, who: Owner, kb_ref: KB-ACC-002}
+    - {id: S4, action: Check mailbox rules and forwarding for unknown changes, time_target: 20 min, who: Owner, kb_ref: KB-ACC-002}
+    - {id: S5, action: Warn colleagues and report the message, time_target: 30 min, who: Owner, kb_ref: KB-PPL-001}
+    - {id: S6, action: Record what happened and when in the incident log, time_target: 30 min, who: Owner, kb_ref: KB-PPL-001}
+- id: PB-RANSOM
+  title: Files are locked or a ransom note appeared
+  status: draft
+  steps:
+    - {id: S1, action: Disconnect affected devices from network and Wi-Fi; do not power off unless advised, time_target: 5 min, who: Owner, kb_ref: KB-BKP-001}
+    - {id: S2, action: Identify which devices and shares are affected, time_target: 30 min, who: Owner, kb_ref: KB-BKP-001}
+    - {id: S3, action: Check that offline/offsite backups are intact and disconnected, time_target: 30 min, who: Owner, kb_ref: KB-BKP-002}
+    - {id: S4, action: Change passwords from a clean device and enable MFA, time_target: 1 hr, who: Owner, kb_ref: KB-ACC-002}
+    - {id: S5, action: Contact a trusted IT professional and consider reporting to national cybercrime authority, time_target: 2 hr, who: Owner, kb_ref: KB-PPL-001}
+    - {id: S6, action: Restore from clean backups after devices are cleaned, time_target: varies, who: IT helper, kb_ref: KB-BKP-002}
+- id: PB-INVOICE-FRAUD
+  title: Suspicious invoice or payment change request
+  status: draft
+  steps:
+    - {id: S1, action: Do not pay or reply to the message, time_target: now, who: Employee, kb_ref: KB-PAY-001}
+    - {id: S2, action: Call the vendor on a number you already have to confirm, time_target: 1 hr, who: Employee, kb_ref: KB-PAY-001}
+    - {id: S3, action: If money was sent, call your bank immediately to request a recall, time_target: ASAP, who: Owner, kb_ref: KB-PAY-001}
+    - {id: S4, action: Preserve the email and report it, time_target: 1 day, who: Owner, kb_ref: KB-PPL-001}
+    - {id: S5, action: Add a two-person approval rule for new payees, time_target: 1 week, who: Owner, kb_ref: KB-PAY-001}
