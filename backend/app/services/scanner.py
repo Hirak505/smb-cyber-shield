@@ -12,10 +12,10 @@ from app.rules.scanner import Context, ParsedMessage, RuleHit, score_message
 from app.schemas.schemas import (
     EvidenceSpan,
     RuleHitOut,
-    ScanMessageResponse,
     ScanLinkResponse,
+    ScanMessageResponse,
 )
-from app.services.kb_loader import kb
+from app.services.llm import LLMClient, get_llm_client
 
 log = logging.getLogger(__name__)
 
@@ -65,6 +65,7 @@ def scan_message(
     urls: list[str] | None,
     db: Session,
     business_id: str | None = None,
+    llm_client: LLMClient | None = None,
 ) -> ScanMessageResponse:
     msg = ParsedMessage(text=text, sender=sender, urls=urls)
     ctx = Context()
@@ -79,14 +80,19 @@ def scan_message(
         for s in all_spans
     ]
 
-    # Static explanation (LLM is optional / post-MVP)
-    if hits:
-        reasons = "; ".join(h.description for h in hits[:3])
-        explanation = f"This message triggered {len(hits)} detection rule(s): {reasons}."
-    else:
-        explanation = "No suspicious patterns were detected."
+    # Grounded LLM explanation with deterministic fallback (privacy: raw text body never sent to LLM)
+    client = llm_client or get_llm_client()
+    explanation_obj = client.explain(
+        verdict=verdict,
+        rule_hits=hits,
+        risk_score=risk_score,
+    )
 
-    next_steps = _STATIC_NEXT_STEPS.get(verdict, [])
+    explanation = explanation_obj.summary
+    if explanation_obj.next_steps:
+        next_steps = [s.text for s in explanation_obj.next_steps]
+    else:
+        next_steps = _STATIC_NEXT_STEPS.get(verdict, [])
 
     # Persist scan – store hash + snippet only (privacy)
     try:
@@ -123,7 +129,7 @@ def scan_link(
     business_id: str | None = None,
 ) -> ScanLinkResponse:
     """Run link-specific rules only (R04, R05)."""
-    from app.rules.scanner import rule_r04, rule_r05, Context, ParsedMessage
+    from app.rules.scanner import Context, ParsedMessage, rule_r04, rule_r05
 
     msg = ParsedMessage(text=url, urls=[url])
     ctx = Context()

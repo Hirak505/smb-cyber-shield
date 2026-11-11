@@ -1,6 +1,12 @@
 """ShieldDesk schemas module."""
 
-from backend.app.schemas.kb import (
+from app.schemas.explanation import (
+    Explanation,
+    NextStepExplanation,
+    ReasonExplanation,
+    ScanExplanation,
+)
+from app.schemas.kb import (
     PlaybookEntry,
     PlaybookStep,
     QuestionEntry,
@@ -10,10 +16,14 @@ from backend.app.schemas.kb import (
 )
 
 __all__ = [
+    "Explanation",
+    "NextStepExplanation",
     "PlaybookEntry",
     "PlaybookStep",
     "QuestionEntry",
+    "ReasonExplanation",
     "RecommendationEntry",
     "RuleConfig",
     "RulesConfig",
+    "ScanExplanation",
 ]
