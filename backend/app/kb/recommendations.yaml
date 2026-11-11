@@ -11,7 +11,7 @@
    steps: [Hover to see the real address, Type known sites manually, Be wary of shortened links]}
 - {id: KB-EML-003, title: Treat unexpected attachments as risky, area: email, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
    steps: [Do not enable macros, Confirm with the sender first, Block risky file types in email settings if available]}
-- {id: KB-EML-004, title: Set up SPF, DKIM and DMARC for your domain, area: email, effort: med, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
+- {id: KB-EML-004, title: "Set up SPF, DKIM and DMARC for your domain", area: email, effort: med, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
    steps: [Ask your email provider for the records, Publish them in DNS, Start DMARC in monitor mode]}
 - {id: KB-PAY-001, title: Verify payment detail changes by phone, area: process, effort: low, status: draft, source_org: TODO, source_url: TODO, last_reviewed: null,
    steps: [Never change bank details from an email alone, Call the vendor on a known number, Require two people to approve new payees]}

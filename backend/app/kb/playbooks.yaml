@@ -25,6 +25,6 @@
   steps:
     - {id: S1, action: Do not pay or reply to the message, time_target: now, who: Employee, kb_ref: KB-PAY-001}
     - {id: S2, action: Call the vendor on a number you already have to confirm, time_target: 1 hr, who: Employee, kb_ref: KB-PAY-001}
-    - {id: S3, action: If money was sent, call your bank immediately to request a recall, time_target: ASAP, who: Owner, kb_ref: KB-PAY-001}
+    - {id: S3, action: "If money was sent, call your bank immediately to request a recall", time_target: ASAP, who: Owner, kb_ref: KB-PAY-001}
     - {id: S4, action: Preserve the email and report it, time_target: 1 day, who: Owner, kb_ref: KB-PPL-001}
     - {id: S5, action: Add a two-person approval rule for new payees, time_target: 1 week, who: Owner, kb_ref: KB-PAY-001}
