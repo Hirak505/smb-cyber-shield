@@ -13,7 +13,7 @@ from typing import Any
 import yaml
 from pydantic import ValidationError
 
-from backend.app.schemas.kb import (
+from app.schemas.kb import (
     PlaybookEntry,
     QuestionEntry,
     RecommendationEntry,

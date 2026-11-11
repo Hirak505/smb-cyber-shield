@@ -10,7 +10,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from backend.app.services.kb import (
+from app.services.kb import (
     KBCrossReferenceError,
     KBDuplicateIdError,
     KBFileNotFoundError,

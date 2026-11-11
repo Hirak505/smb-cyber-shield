@@ -1,6 +1,6 @@
 """ShieldDesk services module."""
 
-from backend.app.services.kb import (
+from app.services.kb import (
     KBCrossReferenceError,
     KBDuplicateIdError,
     KBError,
@@ -14,15 +14,25 @@ from backend.app.services.kb import (
     load_rules,
     load_rules_config,
 )
+from app.services.llm import (
+    BaseLLMProvider,
+    LLMClient,
+    MockLLMProvider,
+    get_llm_client,
+)
 
 __all__ = [
+    "BaseLLMProvider",
     "KBCrossReferenceError",
     "KBDuplicateIdError",
     "KBError",
     "KBFileNotFoundError",
     "KBStore",
     "KBValidationError",
+    "LLMClient",
+    "MockLLMProvider",
     "get_kb_store",
+    "get_llm_client",
     "load_playbooks",
     "load_questions",
     "load_recommendations",
