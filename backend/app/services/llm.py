@@ -36,26 +36,6 @@ log = logging.getLogger(__name__)
 
 _RULES_YAML_PATH = Path(__file__).resolve().parent.parent / "rules" / "rules.yaml"
 
-# Static next steps from scanner for deterministic fallback
-_STATIC_NEXT_STEPS: dict[str, list[str]] = {
-    "Likely phishing": [
-        "Do not click any links or open attachments in the message.",
-        "Report the message to your email provider as phishing.",
-        "Warn colleagues if relevant.",
-        "If you already clicked a link, follow the phishing-click playbook.",
-    ],
-    "Suspicious": [
-        "Verify through a second channel before taking any action.",
-        "Do not enter credentials or payment details.",
-        "Check the sender domain carefully.",
-    ],
-    "Likely safe": [
-        "No immediate action required.",
-        "Continue to exercise normal caution.",
-    ],
-}
-
-
 # ---------------------------------------------------------------------------
 # KB Grounding & Rule Mapping Helpers
 # ---------------------------------------------------------------------------
@@ -114,7 +94,7 @@ def get_deterministic_fallback(
     rule_hits: list[RuleHit],
     kb_entries: list[KBRecommendation] | None = None,
 ) -> ScanExplanation:
-    """Build deterministic explanation matching baseline scanner and static next steps."""
+    """Build a deterministic explanation with relevant approved KB steps."""
     summary = get_static_explanation(verdict, rule_hits)
 
     reasons = [
@@ -122,16 +102,17 @@ def get_deterministic_fallback(
         for h in rule_hits
     ]
 
-    static_steps = _STATIC_NEXT_STEPS.get(verdict, [])
-
-    # Prefer verified KB reference from entries, or default to standard email KB ref
-    primary_kb_ref = "KB-EML-001"
-    if kb_entries and len(kb_entries) > 0:
-        primary_kb_ref = kb_entries[0].id
-
+    relevant_entries = get_kb_entries_for_hits(rule_hits)
+    if kb_entries is not None:
+        supplied_ids = {entry.id for entry in kb_entries}
+        relevant_entries = [
+            entry for entry in relevant_entries if entry.id in supplied_ids
+        ]
     next_steps = [
-        NextStepExplanation(text=step_text, kb_ref=primary_kb_ref)
-        for step_text in static_steps
+        NextStepExplanation(text=step_text, kb_ref=entry.id)
+        for entry in relevant_entries
+        if entry.status == "approved"
+        for step_text in entry.steps
     ]
 
     return ScanExplanation(
@@ -354,6 +335,15 @@ class LLMClient:
             log.info("LLM provider not configured or missing API key; using deterministic fallback.")
             return get_deterministic_fallback(verdict, rule_hits, kb_entries)
 
+        rule_kb_mapping = get_rule_kb_mapping()
+        triggered_kb_ids = {
+            kb_id
+            for hit in rule_hits
+            for kb_id in rule_kb_mapping.get(hit.rule_id, [])
+        }
+        supplied_kb_ids = {entry.id for entry in kb_entries}
+        allowed_kb_ids = triggered_kb_ids.intersection(supplied_kb_ids)
+
         # 2. Build prompt with minimal necessary data (no raw text!)
         system_prompt, user_prompt = self._build_prompts(verdict, rule_hits, kb_entries, risk_score)
 
@@ -389,6 +379,8 @@ class LLMClient:
                 return get_deterministic_fallback(verdict, rule_hits, kb_entries)
 
         # 7. Validate KB Grounding
+        grounded_next_steps: list[NextStepExplanation] = []
+        seen_kb_ids: set[str] = set()
         for step in explanation.next_steps:
             rec = kb.get_recommendation(step.kb_ref)
             if rec is None:
@@ -398,8 +390,22 @@ class LLMClient:
                 )
                 return get_deterministic_fallback(verdict, rule_hits, kb_entries)
 
-        # All validations passed
-        return explanation
+            if rec.id not in allowed_kb_ids:
+                log.warning(
+                    "LLM returned KB reference '%s' not allowed for triggered rules.",
+                    rec.id,
+                )
+                return get_deterministic_fallback(verdict, rule_hits, kb_entries)
+
+            if rec.id not in seen_kb_ids:
+                seen_kb_ids.add(rec.id)
+                grounded_next_steps.extend(
+                    NextStepExplanation(text=kb_step, kb_ref=rec.id)
+                    for kb_step in rec.steps
+                )
+
+        # Keep the response schema, but display only steps sourced from the KB.
+        return explanation.model_copy(update={"next_steps": grounded_next_steps})
 
     def _build_prompts(
         self,
